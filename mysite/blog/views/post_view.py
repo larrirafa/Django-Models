@@ -1,8 +1,7 @@
-from django.http import HttpResponse
-from django.views import generic
+from django.views.generic import ListView
+from ..models import Post
 
-
-class PostView(generic.View):
-
-    def get(self, request, *args, **kwargs):
-        return HttpResponse("Hello, world.")
+class PostView(ListView):
+    model = Post
+    template_name = "blog/home.html"  # crie esse template em blog/templates/blog/home.html
+    context_object_name = "posts"
