@@ -1,6 +1,9 @@
 from django.urls import path
-from blog.views.post_view import PostView   # importa direto do arquivo
+from blog.views.home import home
+from blog.views.post_view import PostView
 
 urlpatterns = [
-    path('', PostView.as_view(), name='home'),
+    path('', home, name='home'),
+    path('home/', home, name='home'),
+    path('posts/', PostView.as_view(), name='post_list'),
 ]

@@ -1,7 +1,8 @@
-from django.views.generic import ListView
-from ..models import Post
+from django.http import JsonResponse
+from django.views import View
+from blog.models import Post
 
-class PostView(ListView):
-    model = Post
-    template_name = "blog/home.html"  # crie esse template em blog/templates/blog/home.html
-    context_object_name = "posts"
+class PostView(View):
+    def get(self, request, *args, **kwargs):
+        posts = list(Post.objects.values("id", "title", "content"))
+        return JsonResponse({"posts": posts})
